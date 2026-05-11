@@ -1,0 +1,74 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "User account information and preferences",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email"]
+    },
+    "Reminder": {
+      "title": "Medicine Reminder",
+      "description": "A scheduled reminder for medicine refill",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "medicineName": { "type": "string" },
+        "dosage": { "type": "string" },
+        "nextRefillDate": { "type": "string", "format": "date-time" },
+        "isCompleted": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "medicineName", "dosage", "nextRefillDate"]
+    },
+    "SearchLog": {
+      "title": "Search Log",
+      "description": "History of medicine searches for translation",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "brandName": { "type": "string" },
+        "genericName": { "type": "string" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["brandName", "genericName", "timestamp"]
+    },
+    "Feedback": {
+      "title": "User Feedback",
+      "description": "User submitted feedback or bug reports",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "message": { "type": "string" },
+        "userId": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["name", "email", "message", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Global user profiles"
+    },
+    "/users/{userId}/reminders/{reminderId}": {
+      "schema": "Reminder",
+      "description": "User specific medicine reminders"
+    },
+    "/users/{userId}/searchHistory/{searchId}": {
+      "schema": "SearchLog",
+      "description": "User search history"
+    },
+    "/feedback/{feedbackId}": {
+      "schema": "Feedback",
+      "description": "Collection of all user feedback"
+    }
+  }
+}

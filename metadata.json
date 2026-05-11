@@ -1,0 +1,6 @@
+{
+  "name": "Jan-Aushadhi Finder",
+  "description": "Healthcare Savings Tool: Find nearest generic medicine outlets and translate branded medicines to their affordable generic equivalents.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": []
+}
